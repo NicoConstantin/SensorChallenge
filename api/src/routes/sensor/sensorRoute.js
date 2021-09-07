@@ -5,6 +5,6 @@ const { createSensors, readSensors, updateSensors,deleteSensors} = require("../.
 router.post('/',createSensors);
 router.get('/',readSensors);
 router.put('/',updateSensors);
-router.delete('/',deleteSensors)
+router.delete('/',deleteSensors);
 
 module.exports = router;
