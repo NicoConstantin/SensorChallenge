@@ -1,6 +1,10 @@
 import Card from "../Card/Card.jsx";
 
+
 export default function Cards ({arrayData}) {
+
+    
+
     return (
         <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-10 items-center">
             {arrayData?.map(card=>{

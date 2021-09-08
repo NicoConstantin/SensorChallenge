@@ -1,5 +1,8 @@
 import Navbar from "../../components/Navbar/Navbar";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { GET_ALL_SENSORS } from "../../utils/constants";
+import Swal from 'sweetalert2';
 
 export default function FormCreate () {
 
@@ -7,7 +10,36 @@ export default function FormCreate () {
     let classError="text-white self-start"
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const onSubmit = data => console.log(data);
+    const onSubmit = data => {
+        axios.post(GET_ALL_SENSORS,{
+            name: data.name,
+            active: data.state,
+            coordinates: [data.latitude,data.longitude],
+            minval: data.minval,
+            maxval: data.maxval
+        })
+        .then((res)=>{
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'bottom-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              Toast.fire({
+                icon: 'success',
+                title: 'Sensor added correctly'
+              })
+        })
+        .catch((e)=>{
+            console.log(e)
+        })
+    };
 
     return(
         <div className="bg-gradient-to-b from-black via-gray-800 to-gray-600 w-full h-full">
@@ -23,7 +55,7 @@ export default function FormCreate () {
                             message:"You must add a sensor name"
                           },
                           pattern: {
-                            value: /^[a-zA-Z]*$/ ,
+                            value: /^[a-zA-Z0-9]*$/ ,
                             message: "Name can only containt alphabetic characters"
                             }
                     })}
@@ -37,7 +69,7 @@ export default function FormCreate () {
                     <div className="flex flex-col gap-y-3 w-full">
 
                         <input
-                        type="number"
+                        type="text"
                         name="latitude"
                         {...register("latitude",{
                             required:{
@@ -52,12 +84,11 @@ export default function FormCreate () {
                         placeholder="Latitude..."
                         className={classInput}/>
                         <span className={classError}>
-                            {console.log(errors.latitude)}
                             {errors.latitude &&  errors.latitude.message}
                         </span>
 
                         <input
-                        type="number"
+                        type="text"
                         name="longitude"
                         {...register("longitude",{
                             required:{
@@ -88,15 +119,15 @@ export default function FormCreate () {
                     })}
                     >
                         <option disabled hidden selected value="">Select sensor state</option>
-                        <option value="active">Active</option>
-                        <option value="inactive">Inactive</option>
+                        <option value={true}>Active</option>
+                        <option value={false}>Inactive</option>
                     </select>
                     <span className={classError}>
                         {errors.state &&  errors.state.message}
                     </span>
                     
                     <input
-                    type="number"
+                    type="text"
                     name="maxval"
                     {...register("maxval",{
                         required:{
@@ -115,7 +146,7 @@ export default function FormCreate () {
                     </span>
 
                     <input
-                    type="number"
+                    type="text"
                     name="minval"
                     {...register("minval",{
                         required:{

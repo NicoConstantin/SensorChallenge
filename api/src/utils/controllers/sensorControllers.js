@@ -35,17 +35,25 @@ async function readSensors (req,res,next){
 }
 
 async function updateSensors (req,res,next){ 
-    let { id, name, active, coordinates, minval, maxval} = req.body
+    let { id, name, statussend, status, coordinates, minval, maxval} = req.body;
+    let sensorToUpdate = await Sensor.findById(id)
+    if(name){
+        sensorToUpdate.name = name
+    }
+    if(statussend){
+        sensorToUpdate.active = status
+    }
+    if(coordinates){
+        sensorToUpdate.location.coordinates = coordinates
+    }
+    if(minval){
+        sensorToUpdate.minval = minval
+    }
+    if(maxval){
+        sensorToUpdate.maxval = maxval
+    }
 
-    let sensorUpdated = await Sensor.findByIdAndUpdate(id,{
-        name,
-        active,
-        location:{
-            coordinates,
-        },
-        minval,
-        maxval,
-   })
+    let sensorUpdated = await sensorToUpdate.save()
    return res.send(sensorUpdated)
 }
 

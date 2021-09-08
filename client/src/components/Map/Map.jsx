@@ -3,7 +3,7 @@ import { GoogleMap, withScriptjs, withGoogleMap} from "react-google-maps"
 function Map ({ long, lat }) {
     return (
         <GoogleMap
-        defaultZoom={10}
+        defaultZoom={19}
         defaultCenter={{lat: lat, lng: long}}
         />
     )
