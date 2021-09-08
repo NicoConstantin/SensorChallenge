@@ -18,22 +18,15 @@ export default function Home() {
     },[])
 
     return (
-        <div className="bg-gradient-to-b from-black via-gray-800 to-gray-600 w-screen h-screen">
+        <div className="bg-gradient-to-b from-black via-gray-800 to-gray-600 w-full h-full">
             <div className="bg-circuit bg-contain bg-no-repeat bg-fixed h-72">
-                <Navbar classContainer="fixed bg-transparent backdrop-blur-lg z-10 h-20 flex justify-between items-center"/>
+                <Navbar />
 
             </div>
-            <Cards arrayData={data}/>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At doloremque sunt reprehenderit aperiam consequuntur esse, voluptatibus impedit reiciendis excepturi culpa nam quisquam optio obcaecati iure accusamus officia mollitia autem earum.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At doloremque sunt reprehenderit aperiam consequuntur esse, voluptatibus impedit reiciendis excepturi culpa nam quisquam optio obcaecati iure accusamus officia mollitia autem earum.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At doloremque sunt reprehenderit aperiam consequuntur esse, voluptatibus impedit reiciendis excepturi culpa nam quisquam optio obcaecati iure accusamus officia mollitia autem earum.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At doloremque sunt reprehenderit aperiam consequuntur esse, voluptatibus impedit reiciendis excepturi culpa nam quisquam optio obcaecati iure accusamus officia mollitia autem earum.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At doloremque sunt reprehenderit aperiam consequuntur esse, voluptatibus impedit reiciendis excepturi culpa nam quisquam optio obcaecati iure accusamus officia mollitia autem earum.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At doloremque sunt reprehenderit aperiam consequuntur esse, voluptatibus impedit reiciendis excepturi culpa nam quisquam optio obcaecati iure accusamus officia mollitia autem earum.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At doloremque sunt reprehenderit aperiam consequuntur esse, voluptatibus impedit reiciendis excepturi culpa nam quisquam optio obcaecati iure accusamus officia mollitia autem earum.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At doloremque sunt reprehenderit aperiam consequuntur esse, voluptatibus impedit reiciendis excepturi culpa nam quisquam optio obcaecati iure accusamus officia mollitia autem earum.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At doloremque sunt reprehenderit aperiam consequuntur esse, voluptatibus impedit reiciendis excepturi culpa nam quisquam optio obcaecati iure accusamus officia mollitia autem earum.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At doloremque sunt reprehenderit aperiam consequuntur esse, voluptatibus impedit reiciendis excepturi culpa nam quisquam optio obcaecati iure accusamus officia mollitia autem earum.</p>
+
+            <div className="py-12 px-8">
+                <Cards arrayData={data}/>
+            </div>
 
         </div>
     )

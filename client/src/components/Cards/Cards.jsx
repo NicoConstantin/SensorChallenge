@@ -2,7 +2,7 @@ import Card from "../Card/Card.jsx";
 
 export default function Cards ({arrayData}) {
     return (
-        <div className="flex justify-around gap-x-10 items-center">
+        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-10 items-center">
             {arrayData?.map(card=>{
                 return (
                     <Card
@@ -11,6 +11,7 @@ export default function Cards ({arrayData}) {
                     state={card.active}
                     minval={card.minval}
                     maxval={card.maxval}
+                    ubication={card.location.coordinates}
                     />
                 )
             })}
