@@ -1,17 +1,33 @@
-function createEvents (req,res,next){ 
-   
+const Sensor = require('../../db/models/sensorModel.js')
+const Event = require('../../db/models/eventModel.js')
+
+async function createEvents (req,res,next){ 
+   let { sensorId, value} = req.body
+   const createEvent = new Event ({
+    sensorId,
+    value,
+    })
+    await createEvent.save()
+    return res.send(createEvent)
 }
 
-function readEvents (req,res,next){ 
-   
+async function readEvents (req,res,next){ 
+    let { sensorId} = req.query;
+    let events = await Event.find({sensorId: sensorId}).exec()
+    return res.send(events)
 }
 
-function updateEvents (req,res,next){ 
-   
+async function updateEvents (req,res,next){ 
+   let { eventId, newValue } = req.body
+   let updatedEvent = await Event.findByIdAndUpdate(eventId,{
+       value: newValue
+   })
+   return res.send(updatedEvent)
 }
 
-function deleteEvents (req,res,next){ 
-   
+async function deleteEvents (req,res,next){ 
+   let deletedEvent = await Event.findByIdAndDelete(req.body.eventId)
+   return res.send(deletedEvent)
 }
 
 
