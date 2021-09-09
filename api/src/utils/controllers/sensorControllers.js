@@ -58,7 +58,7 @@ async function updateSensors (req,res,next){
 }
 
 async function deleteSensors (req,res,next){ 
-    let sensorDeleted = await Sensor.findByIdAndRemove(req.body.id)
+    let sensorDeleted = await Sensor.deleteOne({_id: req.body.id})
 
     return res.send(sensorDeleted)
 }

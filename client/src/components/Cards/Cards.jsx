@@ -13,9 +13,6 @@ export default function Cards ({arrayData}) {
                     name={card.name}
                     nSerial={card._id}
                     state={card.active}
-                    minval={card.minval}
-                    maxval={card.maxval}
-                    ubication={card.location.coordinates}
                     />
                 )
             })}

@@ -12,7 +12,6 @@ export default function Home() {
     useEffect(()=>{
         axios.get(GET_ALL_SENSORS)
         .then(res=> {
-            console.log(res.data)
             setData(res.data)})
         .catch(e=>console.log(e))
     },[])
