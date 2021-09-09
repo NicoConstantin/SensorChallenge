@@ -26,7 +26,7 @@ export default function Detail () {
         <div className="bg-gradient-to-b from-black via-gray-800 to-gray-600 w-full flex flex-col items-center gap-y-8">
             <Navbar/>
 
-            <div className={`mt-32 w-full`}>
+            <div className="mt-32 w-full">
                 <CardDetail sensor={sensor}/>
             </div>
 

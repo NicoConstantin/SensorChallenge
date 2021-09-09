@@ -4,7 +4,7 @@ import { GET_ALL_SENSORS } from "../constants"
 
 export default async function updateState (state,id) {
     const { value: accept } = await Swal.fire({
-        title: 'Update State',
+        title: 'Update Status',
         input: 'checkbox',
         inputValue: 1,
         inputPlaceholder:`I agree to ${state?"disable":"reactivate"} the sensor`,
@@ -22,7 +22,7 @@ export default async function updateState (state,id) {
             status : !state
         })
         .then(()=>{
-          Swal.fire(`Sensor ${state?"disabled":"reactivated"}`)
+          Swal.fire(`Sensor ${state?"Disabled":"Reactivated"}`)
         })
         .catch(e=>console.log(e))
       }

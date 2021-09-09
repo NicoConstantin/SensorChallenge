@@ -38,7 +38,7 @@ export default async function updateSensor (object) {
             [object.parameter]: newValue
         })
         .then(()=>{
-            Swal.fire(`The new sensor ${object.parameterText} is ${newValue}`)
+            Swal.fire(`New sensor ${object.parameterText}: ${newValue}`)
         })
         .catch(e=>console.log(e))
         

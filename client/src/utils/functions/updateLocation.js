@@ -17,7 +17,7 @@ export default async function updateLocation (id) {
             let lat = document.getElementById('latitude').value
             let long = document.getElementById('longitude').value
             if (!regexNumberic.test(lat) || !regexNumberic.test(long)){
-                Swal.showValidationMessage(`Must be numbers`)
+                Swal.showValidationMessage(`Only numeric characters`)
             }
           return [lat,long]
         },

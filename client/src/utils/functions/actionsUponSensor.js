@@ -22,7 +22,7 @@ export default async function actionsUponSensor ( idSensor, state ) {
         inputOptions: inputOptions,
         inputValidator: (value) => {
           if (!value) {
-            return 'You need to choose one option!'
+            return 'You need to choose one option'
           }
         }
       })

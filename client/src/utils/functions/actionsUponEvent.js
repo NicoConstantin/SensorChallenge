@@ -20,7 +20,7 @@ export default async function actionsUponEvent ( eventId, minval, maxval, id ) {
         inputOptions: inputOptions,
         inputValidator: (value) => {
           if (!value) {
-            return 'You need to choose something!'
+            return 'You need to choose one option'
           }
         }
       })

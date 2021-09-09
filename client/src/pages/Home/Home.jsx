@@ -3,6 +3,7 @@ import Cards from "../../components/Cards/Cards";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { GET_ALL_SENSORS } from "../../utils/constants";
+import Footer from "../../components/Footer/Footer";
 
 
 export default function Home() {
@@ -25,7 +26,6 @@ export default function Home() {
             <div className="py-12 w-10/12 mx-auto">
                 <Cards arrayData={data}/>
             </div>
-
         </div>
     )
   }

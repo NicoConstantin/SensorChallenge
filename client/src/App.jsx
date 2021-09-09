@@ -3,6 +3,7 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import Home from "./pages/Home/Home";
 import FormCreate from './pages/FormCreate/FormCreate';
 import Detail from './pages/Detail/Detail';
+import Footer from './components/Footer/Footer';
 
 export default function App() {
 
@@ -19,6 +20,7 @@ export default function App() {
           <Detail/>
         </Route>
       </BrowserRouter>
+      <Footer/>
     </div>
   )
 }

@@ -9,9 +9,9 @@ import { credentials } from "../../utils/credentials";
 export default function  CardDetail ({sensor}) {
 
     return(
-        <div className="relative  w-10/12 mx-auto">
+        <div className="relative  w-10/12 mx-auto lg:w-11/12">
 
-            <div className="rounded-t-md bg-violet w-full h-16 flex items-center justify-between px-6 shadow-detail-header">
+            <div className="rounded-t-md bg-violet w-full  h-16 flex items-center justify-between px-6 shadow-detail-header">
                 <h2 className="font-semibold text-lg">SERIAL {sensor?._id}</h2>
                 <BsTrash onClick={()=>deleteSensor(sensor._id)} className="text-2xl cursor-pointer"/>
             </div>
@@ -20,15 +20,17 @@ export default function  CardDetail ({sensor}) {
 
                 <img src={sensorPlaceholder} alt="sensor-placeholder" className="w-52 sm:self-center"/>
 
-                <div className="flex flex-col font-titillium relative mb-4 gap-y-2.5 w-full">
+                <div className=" relative flex flex-col font-titillium relative mb-4 gap-y-2.5 w-full lg:w-4/12 ">
 
-                    <BsPencil onClick={()=>actionsUponSensor(sensor._id, sensor.active)}
-                    className="cursor-pointer text-black text-lg hover:text-black | transition-colors duration-100 absolute right-0 lg:right-16 xl:right-32 2xl:right-60"
-                    />
 
-                    <div className="flex items-center">
-                        <span className={`w-3 h-3 rounded-full ${sensor?.active?"bg-green-neon shadow-neon-green":"bg-red-neon shadow-neon-red"}`}></span>
-                        <span className="ml-2.5">{sensor?.active?"Active":"Inactive"}</span>
+                    <div className="flex justify-between lg:justify-start items-center">
+                        <div className="flex items-center">
+                            <span className={`w-3 h-3 rounded-full ${sensor?.active?"bg-green-neon shadow-neon-green":"bg-red-neon shadow-neon-red"}`}></span>
+                            <span className="ml-2.5">{sensor?.active?"Active":"Inactive"}</span>
+                        </div>
+                        <BsPencil onClick={()=>actionsUponSensor(sensor._id, sensor.active)}
+                        className="cursor-pointer text-black text-lg hover:text-darkviolet | transition-colors duration-100 lg:ml-40"
+                        />
                     </div>
 
                     <h2>SENSOR: {sensor?.name?.toUpperCase()}</h2>
@@ -38,7 +40,7 @@ export default function  CardDetail ({sensor}) {
 
                 </div>
 
-                <div className="relative w-full h-44 md:h-60 lg:h-80">
+                <div className="relative w-full h-44 md:h-60 lg:h-80 2xl:h-96 lg:w-1/2">
                     <BsPencil className="absolute z-20 right-0 top-0 text-xl cursor-pointer" onClick={()=>updateLocation(sensor?._id)}/>
                     <Map
                     lat= {sensor?.location?.coordinates[0]}
