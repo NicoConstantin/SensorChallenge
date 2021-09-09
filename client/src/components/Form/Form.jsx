@@ -46,7 +46,7 @@ export default function Form () {
     return(
         <div className="pt-20 sm:pt-36 2xl:pt-44 flex flex-col justify-center items-center ">
             <h1 className=" text-violet text-2xl 2xl:text-3xl font-bold mt-8">Set Device Data</h1>
-            <form onSubmit={handleSubmit(onSubmit)} className=" w-10/12 sm:w-8/12 md:w-7/12 lg:w-6/12 xl:w-5/12 2xl:w-4/12 h-3/4 | flex flex-col items-center justify-center | gap-y-3 mx-auto mt-8">
+            <form onSubmit={handleSubmit(onSubmit)} className=" w-10/12 sm:w-8/12 md:w-7/12 lg:w-6/12 xl:w-5/12 2xl:w-4/12 h-2/6 | flex flex-col items-center justify-center | gap-y-3 mx-auto mt-8">
                 
                 <input
                 name="name"

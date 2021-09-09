@@ -10,6 +10,11 @@
   box-sizing: border-box;
 }
 
-// html, body, #root, .App {
-//   height: 100%;
-// }
+body, #root , .App { 
+  min-height: 100vh;
+}
+
+
+body{ 
+  padding-bottom: 160px;
+}

@@ -3,7 +3,6 @@ import Cards from "../../components/Cards/Cards";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { GET_ALL_SENSORS } from "../../utils/constants";
-import Footer from "../../components/Footer/Footer";
 
 
 export default function Home() {
@@ -18,7 +17,7 @@ export default function Home() {
     },[])
 
     return (
-        <div className="bg-gradient-to-b from-black via-gray-800 to-gray-600 w-full h-full">
+        <div className="w-full h-full">
             <div className="bg-circuit bg-contain bg-no-repeat bg-fixed h-72 lg:h-80 xl:h-96 sm:bg-cover ">
                 <Navbar />
             </div>

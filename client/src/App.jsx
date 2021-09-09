@@ -8,7 +8,7 @@ import Footer from './components/Footer/Footer';
 export default function App() {
 
   return (
-    <div className="App">
+    <div className="App bg-gradient-to-b from-black via-gray-800 to-gray-600 w-full h-full ">
       <BrowserRouter>
         <Route exact path="/">
           <Home/>
@@ -19,8 +19,8 @@ export default function App() {
         <Route exact path="/detail/:id">
           <Detail/>
         </Route>
+        <Footer/>
       </BrowserRouter>
-      <Footer/>
     </div>
   )
 }

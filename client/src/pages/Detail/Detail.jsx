@@ -23,7 +23,7 @@ export default function Detail () {
     },[id])
 
     return (
-        <div className="bg-gradient-to-b from-black via-gray-800 to-gray-600 w-full flex flex-col items-center gap-y-8">
+        <div className=" w-full h-full flex flex-col items-center gap-y-8 ">
             <Navbar/>
 
             <div className="mt-32 w-full">
@@ -31,7 +31,6 @@ export default function Detail () {
             </div>
 
             <Events id={id} events={events} maxval={sensor?.maxval} minval={sensor?.minval}/>
-
         </div>
     )
 }
