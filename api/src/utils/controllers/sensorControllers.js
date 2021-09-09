@@ -1,7 +1,6 @@
-const Sensor = require('../../db/models/sensorModel.js')
-const Event = require('../../db/models/eventModel.js')
+const Sensor = require('../../db/models/sensorModel.js');
 
-async function createSensors (req,res,next){ 
+function createSensors (req,res,next){ 
     let { name, active, coordinates, minval, maxval} = req.body;
 
     const createSensor = new Sensor ({
@@ -12,55 +11,60 @@ async function createSensors (req,res,next){
         },
         minval,
         maxval,
-    })
-    await createSensor.save()
-    return res.send(createSensor)
-}
+    });
+
+    createSensor.save()
+    .then(()=> res.send(createSensor))
+    .catch(e=> next(e))
+};
 
 async function readSensors (req,res,next){ 
     let {id} = req.query;
 
-    //checkear si trae bien los eventos
     if(id){
-        let sensorFounded = await Sensor.findById(id)
-        let eventsSensor = await Event.find({ sensorId: id}).exec();
-        sensorFounded.events = eventsSensor
-
-        return res.send(sensorFounded)
+        Sensor.findById(id)
+        .then((sensorFounded)=>{
+            return res.send(sensorFounded)
+        })
+        .catch(e=>next(e))
     }
     else{
-        let sensorsFounded = await Sensor.find()
-        return res.send(sensorsFounded)
+        Sensor.find()
+        .then(sensorsFounded=>res.send(sensorsFounded))
+        .catch(e=>next(e))
     }
-}
+};
 
-async function updateSensors (req,res,next){ 
+function updateSensors (req,res,next){ 
     let { id, name, statussend, status, coordinates, minval, maxval} = req.body;
-    let sensorToUpdate = await Sensor.findById(id)
-    if(name){
-        sensorToUpdate.name = name
-    }
-    if(statussend){
-        sensorToUpdate.active = status
-    }
-    if(coordinates){
-        sensorToUpdate.location.coordinates = coordinates
-    }
-    if(minval){
-        sensorToUpdate.minval = minval
-    }
-    if(maxval){
-        sensorToUpdate.maxval = maxval
-    }
 
-    let sensorUpdated = await sensorToUpdate.save()
-   return res.send(sensorUpdated)
+    Sensor.findById(id)
+    .then((sensorToUpdate)=>{
+        if(name){
+            sensorToUpdate.name = name
+        }
+        if(statussend){
+            sensorToUpdate.active = status
+        }
+        if(coordinates){
+            sensorToUpdate.location.coordinates = coordinates
+        }
+        if(minval){
+            sensorToUpdate.minval = minval
+        }
+        if(maxval){
+            sensorToUpdate.maxval = maxval
+        }
+        return sensorToUpdate.save()
+    })
+    .then( sensorUpdated=> res.send(sensorUpdated))
+    .catch(e=>next(e))
 }
 
-async function deleteSensors (req,res,next){ 
-    let sensorDeleted = await Sensor.deleteOne({_id: req.body.id})
-
-    return res.send(sensorDeleted)
+function deleteSensors (req,res,next){ 
+    Sensor.deleteOne({_id: req.body.id})
+    .then(sensorDeleted=>res.send(sensorDeleted))
+    .catch(e=>next(e))
 }
 
 

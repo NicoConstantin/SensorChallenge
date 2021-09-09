@@ -3,7 +3,7 @@ import Swal from "sweetalert2"
 import { EVENTS } from "../constants"
 
 
-export default async function actionsUponEvent ( eventId, minval, maxval ) {
+export default async function actionsUponEvent ( eventId, minval, maxval, id ) {
 
     const inputOptions = new Promise((resolve) => {
         setTimeout(() => {
@@ -68,7 +68,8 @@ export default async function actionsUponEvent ( eventId, minval, maxval ) {
         if (newValue) {
             axios.put(EVENTS,{
                 eventId: eventId,
-                newValue: newValue
+                newValue: newValue,
+                sensorId: id
             })
             .then(()=>{
                 Swal.fire(`Event updated`)

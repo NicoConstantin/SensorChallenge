@@ -18,7 +18,7 @@ export default function Home() {
 
     return (
         <div className="bg-gradient-to-b from-black via-gray-800 to-gray-600 w-full h-full">
-            <div className="bg-circuit bg-contain bg-no-repeat bg-fixed h-72 xl:h-96 2xl:bg-cover">
+            <div className="bg-circuit bg-contain bg-no-repeat bg-fixed h-72 lg:h-80 xl:h-96 sm:bg-cover ">
                 <Navbar />
             </div>
 

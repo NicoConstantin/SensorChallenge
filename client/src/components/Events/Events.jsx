@@ -26,7 +26,7 @@ export default function Events ({id,maxval,minval,events}) {
                                 <td>{e.createdAt.slice(0,10).split("-").reverse().join("-")} {e.createdAt.slice(11,19)}</td>
                                 <td>{e.updatedAt.slice(0,10).split("-").reverse().join("-")} {e.updatedAt.slice(11,19)}</td>
                                 <td>{e.value}</td>
-                                <td className="w-2"><CgArrowsExchangeAlt className="text-xl cursor-pointer"onClick={()=>actionsUponEvent(e._id, minval, maxval)}/></td>
+                                <td className="w-2"><CgArrowsExchangeAlt className="text-xl cursor-pointer"onClick={()=>actionsUponEvent(e._id, minval, maxval, id)}/></td>
                             </tr>
                         )
                     })}
