@@ -5,16 +5,18 @@ export default function  Card ({ name, nSerial, state}) {
 
 
     return(
-        <div className={`bg-white bg-opacity-50 shadow-around rounded-md | text-black | w-80 h-80 | py-4 px-6 | flex flex-col justify-between items-center | ${state?null:"filter grayscale-md"}`}>
-            <Link to={`/detail/${nSerial}`}>
-                <img src={sensorPlaceholder} alt="sensor-placeholder" className="h-5/6 self-center"/>
-                <div className="flex justify-around items-center w-10/12">
-                    <h2 className="">Sensor: {name}</h2>
-                    <div className="flex items-center " >
-                        <span className={`w-2.5 h-2.5 rounded-full ${state?"bg-green-600":"bg-red-600"}`}></span>
-                        <span className="ml-2.5">{state?"Active":"Inactive"}</span>
-                    </div>
+        <div className={`bg-white bg-opacity-70 shadow-around rounded-md | w-72 h-80 | py-4 px-6`}>
+            <Link to={`/detail/${nSerial}`} className="flex flex-col justify-between items-center font-titillium font-semibold text-center">
+
+                <img src={sensorPlaceholder} alt="sensor-placeholder" className="w-48"/>
+
+                <h2 className="text-xl tracking-wider">SENSOR: {name.toUpperCase()}</h2>
+
+                <div className="flex items-center mt-2" >
+                    <span className={`w-3 h-3 rounded-full ${state?"bg-green-neon shadow-neon-green":"bg-red-neon shadow-neon-red"}`}></span>
+                    <span className="ml-2.5 text-lg tracking-wide">{state?"Active":"Inactive"}</span>
                 </div>
+
             </Link>
             
         </div>

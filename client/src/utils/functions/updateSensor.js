@@ -35,7 +35,7 @@ export default async function updateSensor (object) {
     if (newValue) {
         axios.put(GET_ALL_SENSORS,{
             id: object.id,
-            [object.parameter.toLowerCase()]: newValue
+            [object.parameter]: newValue
         })
         .then(()=>{
             Swal.fire(`The new sensor ${object.parameterText} is ${newValue}`)

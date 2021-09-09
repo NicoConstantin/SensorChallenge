@@ -6,7 +6,7 @@ export default function Cards ({arrayData}) {
     
 
     return (
-        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-10 items-center">
+        <div className="flex flex-wrap items-center gap-10 items-center justify-center">
             {arrayData?.map(card=>{
                 return (
                     <Card

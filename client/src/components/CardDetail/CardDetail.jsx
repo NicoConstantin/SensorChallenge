@@ -1,44 +1,55 @@
-import sensorPlaceholder from "../../assets/images/sensor-image-placeholder.png"
-import deleteSensor from "../../utils/functions/deleteSensor"
-import updateSensor from "../../utils/functions/updateSensor"
-import updateState from "../../utils/functions/updateState"
+import sensorPlaceholder from "../../assets/images/sensor-image-placeholder.png";
+import deleteSensor from "../../utils/functions/deleteSensor";
+import { BsTrash, BsPencil } from "react-icons/bs";
+import actionsUponSensor from "../../utils/functions/actionsUponSensor";
+import Map from "../Map/Map";
+import updateLocation from "../../utils/functions/updateLocation";
+import { credentials } from "../../utils/credentials";
 
 export default function  CardDetail ({sensor}) {
 
     return(
-        <div className="w-full">
-            <div>
-                <button onClick={()=>deleteSensor(sensor._id)}>Tachito de basura</button>
-                <img src={sensorPlaceholder} alt="sensor-placeholder" className="h-2/6 self-center"/>
-                <div className="flex flex-col">
-                        <h2
-                        onClick={()=>updateSensor({ parameter:"name", parameterText:"Name", parameterType:"text", value:sensor.name, id:sensor?._id })}
-                        className="cursor-pointer"
-                        >
-                            Name: {sensor?.name}
-                        </h2>
-                        <div className="flex items-center cursor-pointer" onClick={()=>updateState(sensor?.active, sensor?._id)}>
-                            <span className={`w-2.5 h-2.5 rounded-full ${sensor?.active?"bg-green-600":"bg-red-600"}`}></span>
-                            <span className="ml-2.5">{sensor?.active?"Active":"Inactive"}</span>
-                        </div>
+        <div className="relative  w-10/12 mx-auto">
 
-                    <h4>Serial: {sensor?._id}</h4>
+            <div className="rounded-t-md bg-violet w-full h-16 flex items-center justify-between px-6 shadow-detail-header">
+                <h2 className="font-semibold text-lg">SERIAL {sensor?._id}</h2>
+                <BsTrash onClick={()=>deleteSensor(sensor._id)} className="text-2xl cursor-pointer"/>
+            </div>
 
-                    <ul className="">
-                        <li
-                        onClick={()=>updateSensor({ parameter: "minval", parameterText:"MNVR", parameterType:"number", value:sensor?.minval, id:sensor?._id })}
-                        className="cursor-pointer"
-                        >
-                            MNVR: {sensor?.minval} (Minimum value readeable)
-                        </li>
-                        <li
-                        onClick={()=>updateSensor({ parameter: "maxval", parameterText:"MXVR", parameterType:"number", value:sensor?.maxval, id:sensor?._id })}
-                        className="cursor-pointer"
-                        >
-                            MXVR: {sensor?.maxval} (Maximum value readeable)
-                        </li>
-                    </ul>
+            <div className="relative flex flex-col lg:flex-row lg:items-center items-center sm:items-start w-full py-4 px-6 bg-white shadow-around rounded-md rounded-t-none">
+
+                <img src={sensorPlaceholder} alt="sensor-placeholder" className="w-52 sm:self-center"/>
+
+                <div className="flex flex-col font-titillium relative mb-4 gap-y-2.5 w-full">
+
+                    <BsPencil onClick={()=>actionsUponSensor(sensor._id, sensor.active)}
+                    className="cursor-pointer text-black text-lg hover:text-black | transition-colors duration-100 absolute right-0 lg:right-16 xl:right-32 2xl:right-60"
+                    />
+
+                    <div className="flex items-center">
+                        <span className={`w-3 h-3 rounded-full ${sensor?.active?"bg-green-neon shadow-neon-green":"bg-red-neon shadow-neon-red"}`}></span>
+                        <span className="ml-2.5">{sensor?.active?"Active":"Inactive"}</span>
+                    </div>
+
+                    <h2>SENSOR: {sensor?.name?.toUpperCase()}</h2>
+
+                    <p>MNVR: {sensor?.minval} <span className="text-sm">(Minimum value readeable)</span></p>
+                    <p>MXVR: {sensor?.maxval} <span className="text-sm">(Maximum value readeable)</span></p>
+
                 </div>
+
+                <div className="relative w-full h-44 md:h-60 lg:h-80">
+                    <BsPencil className="absolute z-20 right-0 top-0 text-xl cursor-pointer" onClick={()=>updateLocation(sensor?._id)}/>
+                    <Map
+                    lat= {sensor?.location?.coordinates[0]}
+                    long= {sensor?.location?.coordinates[1]}
+                    googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&key=${credentials.API_KEY_MAPS}`}
+                    containerElement = {<div className="h-full w-full z-0 border-purple-400 border rounded-sm"></div>}
+                    mapElement = {<div className="h-full"></div>}
+                    loadingElement = {<p>Cargando...</p>}
+                    />
+                </div>
+
             </div>
         </div>
     )

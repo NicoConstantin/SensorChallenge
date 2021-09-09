@@ -5,10 +5,12 @@ import { GET_ALL_SENSORS } from "../../utils/constants";
 import Swal from 'sweetalert2';
 
 export default function FormCreate () {
+    
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-    let classInput="border-gray-300 border rounded border-solid outline-none | p-2 | text-darkblue  | w-full | focus:border-green-800";
-    let classError="text-white self-start"
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    let classInput="border-gray-300 border rounded border-solid outline-none | p-2 | text-gray-900  | w-full placeholder-primary";
+    let classError="text-purple-300 self-start"
+    let classSubmitButton= " py-3  px-8 | font-bold | tracking-wider | rounded | mt-6 |transition-colors  duration-300 " + (Object.values(errors).length === 0 ? "bg-darkviolet | text-lightblue | cursor-pointer | hover:bg-violet ":"bg-darkblue bg-opacity-20 | text-gray-400 ")
 
     const onSubmit = data => {
         axios.post(GET_ALL_SENSORS,{
@@ -19,6 +21,7 @@ export default function FormCreate () {
             maxval: data.maxval
         })
         .then((res)=>{
+            reset()
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'bottom-end',
@@ -42,10 +45,11 @@ export default function FormCreate () {
     };
 
     return(
-        <div className="bg-gradient-to-b from-black via-gray-800 to-gray-600 w-full h-full">
+        <div className="bg-gradient-to-b from-black via-gray-800 to-gray-600 w-full h-screen">
             <Navbar />
-            <div className="h-full w-full flex justify-center">
-                <form onSubmit={handleSubmit(onSubmit)} className="pt-48 w-10/12 h-3/4 flex flex-col items-center justify-around">
+            <div className="pt-20 sm:pt-36 2xl:pt-44 flex flex-col justify-center items-center ">
+                <h1 className=" text-violet text-2xl 2xl:text-3xl font-bold mt-8">Set Device Data</h1>
+                <form onSubmit={handleSubmit(onSubmit)} className=" w-10/12 sm:w-8/12 md:w-7/12 lg:w-6/12 xl:w-5/12 2xl:w-4/12 h-3/4 | flex flex-col items-center justify-center | gap-y-3 mx-auto mt-8">
                     
                     <input
                     name="name"
@@ -66,47 +70,43 @@ export default function FormCreate () {
                         {errors.name &&  errors.name.message}
                     </span>
 
-                    <div className="flex flex-col gap-y-3 w-full">
+                    <input
+                    type="text"
+                    name="latitude"
+                    {...register("latitude",{
+                        required:{
+                            value:true,
+                            message:"You must add a latitude parameter"
+                            },
+                            pattern: {
+                            value: /^-?[0-9]\d*(\.\d+)?$/ ,
+                            message: "Latitude must be a number"
+                            }
+                    })}
+                    placeholder="Latitude..."
+                    className={classInput}/>
+                    <span className={classError}>
+                        {errors.latitude &&  errors.latitude.message}
+                    </span>
 
-                        <input
-                        type="text"
-                        name="latitude"
-                        {...register("latitude",{
-                            required:{
-                                value:true,
-                                message:"You must add a latitude parameter"
-                              },
-                              pattern: {
-                                value: /^-?[0-9]\d*(\.\d+)?$/ ,
-                                message: "Latitude must be a number"
-                                }
-                        })}
-                        placeholder="Latitude..."
-                        className={classInput}/>
-                        <span className={classError}>
-                            {errors.latitude &&  errors.latitude.message}
-                        </span>
-
-                        <input
-                        type="text"
-                        name="longitude"
-                        {...register("longitude",{
-                            required:{
-                                value:true,
-                                message:"You must add a longitude parameter"
-                              },
-                              pattern: {
-                                value: /^-?[0-9]\d*(\.\d+)?$/ ,
-                                message: "Longitude must be a number"
-                                }
-                        })}
-                        placeholder="Longitude..."
-                        className={classInput}/>
-                        <span className={classError}>
-                            {errors.longitude &&  errors.longitude.message}
-                        </span>
-
-                    </div>
+                    <input
+                    type="text"
+                    name="longitude"
+                    {...register("longitude",{
+                        required:{
+                            value:true,
+                            message:"You must add a longitude parameter"
+                            },
+                            pattern: {
+                            value: /^-?[0-9]\d*(\.\d+)?$/ ,
+                            message: "Longitude must be a number"
+                            }
+                    })}
+                    placeholder="Longitude..."
+                    className={classInput}/>
+                    <span className={classError}>
+                        {errors.longitude &&  errors.longitude.message}
+                    </span>
 
                     <select
                     className={classInput}
@@ -164,7 +164,7 @@ export default function FormCreate () {
                         {errors.minval &&  errors.minval.message}
                     </span>
 
-                    <input type="submit"/>
+                    <input className={classSubmitButton} type="submit" value="Create Sensor" />
 
                 </form>
             </div>

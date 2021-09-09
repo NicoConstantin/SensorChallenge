@@ -17,13 +17,12 @@ export default function Home() {
     },[])
 
     return (
-        <div className="bg-gradient-to-b from-black via-gray-800 to-gray-600 w-full ">
-            <div className="bg-circuit bg-contain bg-no-repeat bg-fixed h-72">
+        <div className="bg-gradient-to-b from-black via-gray-800 to-gray-600 w-full h-full">
+            <div className="bg-circuit bg-contain bg-no-repeat bg-fixed h-72 xl:h-96 2xl:bg-cover">
                 <Navbar />
-
             </div>
 
-            <div className="py-12 px-8">
+            <div className="py-12 w-10/12 mx-auto">
                 <Cards arrayData={data}/>
             </div>
 
