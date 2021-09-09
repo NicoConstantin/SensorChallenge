@@ -15,7 +15,7 @@ export default function App() {
         <Route exact path="/create">
           <FormCreate/>
         </Route>
-        <Route path="/:id">
+        <Route exact path="/detail/:id">
           <Detail/>
         </Route>
       </BrowserRouter>

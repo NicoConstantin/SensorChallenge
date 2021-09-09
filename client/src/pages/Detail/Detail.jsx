@@ -24,7 +24,7 @@ export default function Detail () {
             setEvents(res[1].data)
         })
         .catch(e=>console.log(e))
-    },[])
+    },[id])
 
     return (
         <div className="bg-gradient-to-b from-black via-gray-800 to-gray-600 w-full flex flex-col items-center">

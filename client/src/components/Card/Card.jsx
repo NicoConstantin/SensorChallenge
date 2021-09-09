@@ -6,7 +6,7 @@ export default function  Card ({ name, nSerial, state}) {
 
     return(
         <div className={`bg-white bg-opacity-50 shadow-around rounded-md | text-black | w-80 h-80 | py-4 px-6 | flex flex-col justify-between items-center | ${state?null:"filter grayscale-md"}`}>
-            <Link to={`/${nSerial}`}>
+            <Link to={`/detail/${nSerial}`}>
                 <img src={sensorPlaceholder} alt="sensor-placeholder" className="h-5/6 self-center"/>
                 <div className="flex justify-around items-center w-10/12">
                     <h2 className="">Sensor: {name}</h2>
