@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 export default function Navbar({classContainer}) {
 
     const [scrolled,setScrolled] = useState(false)
+    console.log("test")
 
     let classBasics = "fixed | z-10 | h-20 w-full | flex justify-between items-center | transition-all duration-200 | pr-4 sm:pr-8 md:pr-12 lg:pr-20 font-orbitron text-lg"
     let classNormal = `${classBasics} bg-gray-100 bg-opacity-20 backdrop-blur-2xl text-lightblue`;
